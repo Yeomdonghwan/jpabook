@@ -23,10 +23,16 @@ public class Category {
     private List<Item> items = new ArrayList<>();
 
     //아래는 카테고리 계층구조를 위해 category끼리 관계를 나타냄
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="parent_id")
     private Category parent;
 
     @OneToMany(mappedBy="parent")
     private List<Category> children= new ArrayList<>();
+
+    //연관관계 메서드
+    public void addChildCategory(Category category){
+        children.add(category);
+        category.parent=this;
+    }
 }

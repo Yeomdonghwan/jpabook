@@ -14,7 +14,7 @@ public class Delivery {
     @Column(name="delivery_id")
     private Long id;
 
-    @OneToOne(mappedBy = "delivery") //연관관계의 주인을 delivery로 줘도 되지만 액세스를 많이하게되는 order을 주인으로 하였음. 둘 중 무엇을 선택해도 됨..
+    @OneToOne(mappedBy = "delivery",fetch = FetchType.LAZY) //연관관계의 주인을 delivery로 줘도 되지만 액세스를 많이하게되는 order을 주인으로 하였음. 둘 중 무엇을 선택해도 됨..
     private Order order;
 
     @Embedded //내장타입
