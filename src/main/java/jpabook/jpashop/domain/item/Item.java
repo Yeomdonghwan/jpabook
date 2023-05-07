@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Getter
+@Getter @Setter
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) //싱글테이블 전략 사용
 @DiscriminatorColumn(name="dtype") //book,movie,album을 구분하기 위한 컬럼
@@ -44,5 +44,11 @@ public abstract class Item {
 
         }
         this.stockQuantity=restStock;
+    }
+
+    public void change(String name, int price, int stockQuantity) {
+        this.name=name;
+        this.price=price;
+        this.stockQuantity=stockQuantity;
     }
 }

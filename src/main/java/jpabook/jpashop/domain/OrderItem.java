@@ -2,11 +2,14 @@ package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
 import jpabook.jpashop.domain.item.Item;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED) //기본생성자 접근을 막음(create메서드 사용해라라는 뜻)
 public class OrderItem {
 
     @Id @GeneratedValue
@@ -32,11 +35,14 @@ public class OrderItem {
         OrderItem orderItem = new OrderItem();
         orderItem.orderPrice=orderPrice;
         orderItem.count=count;
+        orderItem.item=item;
 
         item.removeStock(count); //아이템의 재고 감소
         return orderItem;
 
     }
+
+
 
     //==비즈니스로직==
     public void cancel() {
